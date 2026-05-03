@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 
+export async function GET() {
+  return Response.json({ message: "API working" });
+}
+
 export async function POST() {
   try {
     const db = await mysql.createConnection({
@@ -9,7 +13,6 @@ export async function POST() {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       port: Number(process.env.DB_PORT),
-      return Response.json({ message: "API working" });
     });
 
     await db.execute("INSERT INTO test (name) VALUES (?)", ["navami"]);
